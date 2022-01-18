@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('asset/css/home.css')}}">
+        {% endblock %}
+        {%  block style%}
+        <link rel="stylesheet" href="{{asset('asset/css/navbar-footer-home.css')}}">
+        {% endblock %}
+        {% block javascripts %}
+        <script src="{{asset('asset/js/home.js')}}"></script>
+        {% endblock %}
+
+{% block body %}
+
+<section class="banner">
+  <div class="element-container">
+    <div class="banner-content">
+      <h1 class="text-center">Bienvenue à La Fourchette Victorieuse</h1>
+      <a class="btn mt-3 btn-hero" href="#">Nous découvrir</a>
+    </div>
+  </div>
+</section>
+
+
+<section id="home">
+    <div id="home-explanation">
+        <h2 class="text-center">Comment ça marche</h2>
+        <div class="container-fluid">
+          <div class="row pb-5 reveal">
+            <div class="text-center col-lg-4">
+              <img src="{{ asset('asset/image/smartphone.jpg') }}" alt="smartphone" />
+              <h4 class="mt-2">Adresse</h4>
+              <p class="mt-4">
+                Je renseigne 'addresse à laquelle je souhaite être livré dans la
+                barre de recherche située dans la page d'accueil.
+              </p>
+            </div>
+            <div class="text-center col-lg-4">
+              <img src="{{ asset('asset/image/menu.jpg') }}" alt="restaurant menu" />
+              <h4 class="mt-2">Je choisi</h4>
+              <p class="mt-4">
+                Je parcours le site et je sélectionne tous ce qui me fait envie.
+              </p>
+            </div>
+            <div class="text-center col-lg-4">
+              <img src="{{ asset('asset/image/food-delivery.jpg') }}" alt="food delivery" />
+              <h4 class="mt-2">Paiement et livraison</h4>
+              <p class="mt-4">
+                Je valide mon panier, je suis les instructions pour le paiement.
+                Bon appétit!!
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+      <div id="home-offer">
+        <h2 class="text-center">Nos offres</h2>
+        <div class="container-fluid">
+          <div class="row reveal">
+            <div class="card text-center col-lg">
+              <img
+                src="https://via.placeholder.com/150C/O"
+                class="card-img-top"
+                alt="cafeteria"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a
+                  href="#"
+                  class="btn"
+                  style="background-color: #eef66c; font-weight: bold"
+                  >Souscrire</a
+                >
+              </div>
+            </div>
+            <div class="card text-center col-lg">
+              <img
+                src="https://via.placeholder.com/150C/O"
+                class="card-img-top"
+                alt="cafeteria"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a
+                  href="#"
+                  class="btn"
+                  style="background-color: #eef66c; font-weight: bold"
+                  >Souscrire</a
+                >
+              </div>
+            </div>
+            <div class="card text-center col-lg">
+              <img
+                src="https://via.placeholder.com/150C/O"
+                class="card-img-top"
+                alt="cafeteria"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a
+                  href="#"
+                  class="btn"
+                  style="background-color: #eef66c; font-weight: bold"
+                  >Souscrire</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

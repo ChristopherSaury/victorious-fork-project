@@ -1,0 +1,41 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center">Gestion des utilisateurs</h2>
+    <div class="row">
+        <div class="col-lg mt-4">
+            <table class="table">
+                <thead style="background-color: #2C3E4E; color: white;">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telephone</th>
+                    <th scope="col">Statut vérifié</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                  <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.isVerified }}</td>
+                    <td><a class="btn btn-danger" href="{{ path('delete_user', {id:user.id}) }}" title="supprimer"><i class="fas fa-trash-alt"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+              
+        </div>
+    </div>
+</div>
+{% endblock %}

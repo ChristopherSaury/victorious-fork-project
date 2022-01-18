@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{%  block stylesheets%}
+<link rel="stylesheet" href="{{asset('asset/css/sign_up.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+
+<section id="register">
+    <div class="container-fluid register-page-container">
+        <div class="row">
+            <div class="register-bkg">
+                <img src="{{ asset('asset/image/burger.jpg') }}" alt="">
+            </div>
+            <div class="register-form">
+                <h2 class="text-center mb-2">Créer un compte</h2>
+                <div class="register-container">
+                    {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.lastname) }}
+                    {{ form_row(registrationForm.firstname) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.phone) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+                    <br>
+                    {{ form_row(registrationForm.useTerms) }}
+                    <p class="mt-2"><a href="{{ path('cgu') }}" target="_blank">Conditions générales d'utilisation</a></p>
+                    <P>cliquer sur le lien de confirmation que vous recevrez par email puis connectez-vous.</P>
+                    
+                    <div class="btn-form-wrapper">
+                        <button type="submit" class="btn">Terminer</button>
+                    </div>
+                    <p class="mt-2">Vous avez déjà un compte ? <a href="{{path('app_login')}}">Connectez vous</a></p>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

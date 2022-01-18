@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page contact{% endblock %}
+
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('asset/css/contact.css') }}">
+        {% endblock %}
+
+{% block body %}
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                {{ form_start(form) }}
+                    {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                        {{ form_row(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                <div class="form-group">
+                    {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+                
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.subject, {'attr': {'class': 'form-control'}}) }}
+                
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.message, {'attr': {'class': 'form-control'}}) }}
+                
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit" value="Send" class="btn btn-primary py-3 px-5">
+                </div>
+                {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

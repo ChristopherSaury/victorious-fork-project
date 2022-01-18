@@ -1,0 +1,25 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Informations plats{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center">Information plat</h2>
+    <div class="row">
+        <div class="col-lg d-flex justify-content-center">
+            <div class="card m-3" style="width: 18rem;">
+                <img src="{{ dish.url }}" class="card-img-top" alt="{{ dish.name }}">
+                <div class="card-body">
+                  <h5 class="card-title">Nom: {{ dish.name }}</h5>
+                  <p class="card-text">description : {{ dish.description }}</p>
+                  <p>Catégorie: {{ dish.category.name }}</p>
+                  <p>Prix: {{ dish.price }} €</p>
+                  <a class="btn btn-primary" href="{{ path('update_dish', {id: dish.id}) }}" title="modifier"><i class="fas fa-edit"></i></a>
+                  <a class="btn btn-danger" href="{{ path('delete_dish', {id: dish.id}) }}" title="supprimer"><i class="fas fa-trash-alt"></i></a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

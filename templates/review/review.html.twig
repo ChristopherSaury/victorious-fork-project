@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace commentaire{% endblock %}
+{%  block stylesheets%}
+<link rel="stylesheet" href="{{asset('asset/css/review.css')}}">
+{% endblock %}
+
+{% block body %}
+<section id="review">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Laisser un avis</h1>
+          <p class="lead">L'équipe de la Fourchette Victorieuse vous remercie de votre confiance. Toujours soucieuse du bien-être et de la 
+              satisfaction de ses clients. </p>
+        </div>
+      </div>
+      <div class="container">
+        {% for message in app.flashes('message') %}
+        <div class="alert alert-success" role="alert">
+          {{message}}
+        </div>
+        {% endfor %}
+        <div class="row justify-content-center">
+          <div class="col-lg-5 bg-light rounded mt-5">
+            <h4 class="text-center">Laisser un commentaire</h4>
+            <form action="{{ path('create_review') }}" method="post">
+              {{ form_start(form) }}
+              <div class="form-group">
+                <label for="content"></label>
+                {{ form_row(form.content, {'label' : (is_granted('ROLE_USER'))? 'Ajouter un commentaire en tant que ' ~ userPseudo : 'Connectez-vous pour laisser un commentaire' }) }} 
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Ajouter commentaire" class="mt-2 btn btn-primary rounded-0">
+              </div>
+              {{ form_end(form) }}
+            </form>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-5 rounded bg-light p-3">
+            {% for review in reviews %}
+            <div class="card mb-2 border-secondary">
+              <div class="card-header py-1 text-light" style="background-color: #735240;">
+                <span>posté par : {{ review.user.getAccountIdentifier() }}</span>
+                <span class="float-right font-italic">date : {{ review.getPublicationDate()|date("d/m/Y") }}</span>
+              </div>
+              <div class="card-body py-2">
+                <p class="card-text">{{ review.content }}</p>
+              </div>
+              {% if(is_granted('ROLE_USER') and userId == review.user.Id ) %}
+              <div class="card-footer py-2">
+                <div class="float-right">
+                  <a href="{{ path('delete_review', {id: review.id}) }}" class="text-danger mr-2"
+                  onClick="return confirm('Voulez-vous supprimer le commentaire ?');" title="supprimer"><i class="fas fa-trash"></i></a>
+                  <a href="" class="text-primary mr-2"
+                  onClick="return confirm('Voulez-vous modifier le commentaire ?');" title="modifier"><i class="fas fa-pen"></i></a>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+</section>
+{% endblock %}

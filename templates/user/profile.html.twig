@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos plats{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('asset/css/profile.css')}}">
+{% endblock %}
+
+{% block body %}
+
+    <section id="userProfile">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg">
+                    <h1 class="text-center">Profil de {{ app.user.firstname|capitalize }} {{ app.user.lastname }}</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

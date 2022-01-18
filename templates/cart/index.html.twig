@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier de commande{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('asset/css/shopping-cart.css')}}">
+{% endblock %}
+
+{% block body %}
+<section id="shopping-cart">
+    <h1 class="mb-5 ml-5">Mon panier</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                            <th scope="col">Plat</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in cartData %}
+                      <tr>
+                        <td>{{ element.dish.name }}</td>
+                        <td>{{ element.dish.price }} €</td>
+                        <td>{{ element.quantity }}</td>
+                        <td>{{ element.quantity * element.dish.price }} €</td>
+                        <td>
+                            <a class="btn btn-success" href="{{ path('cart_add', {id: element.dish.id}) }}" title="ajouter"><i class="fas fa-plus-square"></i></a>
+                            <a class="btn btn-warning" href="{{ path('cart_remove', {id: element.dish.id}) }}" title="retirer"><i class="far fa-minus-square"></i></a>
+                            <a class="btn btn-danger" href="{{ path('cart_delete', {id: element.dish.id}) }}" title="supprimer"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                      </tr>
+                      {% else %}
+                      <tr>
+                        <td colspan="5" class="text-center">Votre panier est vide</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <td colspan="3">Total</td>
+                        <td class="text-end">{{ total }} €</td>
+                        <td><a class="btn btn-danger" href="{{ path('cart_delete_all')}}" title="supprimer panier"><i class="far fa-trash-alt"></i></a></td>
+                    </tfoot>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

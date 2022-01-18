@@ -1,0 +1,70 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Gestion des plats{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center">Gestion des plats</h2>
+    <div class="row">
+        <div class="col-lg mt-4">
+          <div class="d-flex align-content-between">
+
+            <span><a href="{{ path('add_dish') }}">+ Ajouter un plat</a></span>
+            <span class="ml-5"><a href="{{ path('category') }}">+ Gérer les catégories</a></span>
+          </div>
+            <table class="table">
+                <thead style="background-color: #2C3E4E; color: white;">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Activer</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for dish in dishes %}
+                  <tr>
+                    <th scope="row">{{ dish.id }}</th>
+                    <td>{{ dish.name }}</td>
+                    <td>{{ dish.getSummary() }}</td>
+                    <td>{{ dish.price }} €</td>
+                    <td>
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="{{ dish.id }}"
+                         {{ (dish.active)? 'checked' : '' }} data-id="{{ dish.id }}">
+                        <label class="custom-control-label" for="{{ dish.id }}"></label>
+                      </div>
+                    </td>
+                    <td><a class="btn" href="{{ path('one_dish', {id: dish.id}) }}" title="aperçu"><i class="far fa-eye"></i></a></td>
+                    <td><a class="btn btn-primary" href="{{ path('update_dish', {id: dish.id}) }}" title="modifier"><i class="fas fa-edit"></i></a></td>
+                    <td><a class="btn btn-danger" href="{{ path('delete_dish', {id: dish.id}) }}" title="supprimer"><i class="fas fa-trash-alt"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+              
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+  <script>
+    window.onload = () =>{
+      let activate = document.querySelectorAll("[type=checkbox]");
+      for (let bon of activate){
+        bon.addEventListener("click", function(){
+          let xmlhttp = new XMLHttpRequest;
+
+          xmlhttp.open("get", `/admin/activate/dish/${this.dataset.id}`);
+          xmlhttp.send();
+        })
+      }
+    }
+  </script>
+{% endblock %}
