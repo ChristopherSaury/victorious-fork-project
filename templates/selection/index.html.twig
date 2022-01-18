@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos plats{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('asset/css/selection.css')}}">
+{% endblock %}
+
+{% block body %}
+<section id="dishes">
+    <h2 class="text-center mb-5">Nos plats</h2>
+      <div class="container-fluid dish-page">  
+        <div class="filter-container">
+          <h3 class="mb-3">Catégories</h3>
+          <form id="categories-filter">
+          {% for category in categories %}
+            <p>
+              <input type="checkbox" name="category[]" id="cat{{ category.id }}" value="{{ category.id }}">
+              <label for="cat{{ category.id }}">{{ category.name }}</label>
+            </p>
+          {% endfor %}
+          <input type="hidden" name="page" value="{{ page }}">
+        </form>
+        </div>
+        <div class="selection-container" id="content">
+          {% for message in app.flashes('message') %}
+          <div class="alert alert-success" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          {% include "selection/content.html.twig" %}
+        </div>
+      </div>
+  </section>
+{% endblock %}
+{% block javascripts %}
+  <script src="{{ asset('asset/js/selection-filter.js') }}"></script>
+{% endblock %}
