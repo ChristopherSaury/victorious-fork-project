@@ -1,0 +1,9 @@
+#review {
+    background-color: #fff;
+    padding: 8% 0;
+}
+@media only screen and (max-width: 576px) {
+    .jumbotron{
+        margin-top: 20%;
+    }
+}

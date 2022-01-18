@@ -1,0 +1,249 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+html {
+  overflow-x: hidden;
+}
+
+#site-header{
+  position: fixed;
+  left: 0;
+  right: 0;
+  padding: 0 20px;
+  background-color: transparent;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+}
+#site-header .site-logo{
+  width: 60px;
+  height: 60px;
+}
+#site-header.active{
+background-color: #ffffff;
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+.logo-nav {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.navigation-link {
+  text-decoration: none;
+  color: #ffffff;
+}
+.navigation-link.active
+{
+  color: #735240;
+}
+header .navbar ul {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+header .navbar ul a {
+  text-decoration: none;
+  font-size: 21px;
+}
+header .navbar ul li {
+  padding: 5px;
+  margin-left: 10px;
+}
+header .navbar a:hover {
+  color: #fdbd32;
+}
+header .icons{
+  display: flex;
+  align-items: center;
+}
+header .icons a {
+  cursor: pointer;
+  height: 35px;
+  line-height: 35px;
+  width: 35px;
+  text-align: center;
+  font-size: 15px;
+  color: #735240;
+  text-decoration: none;
+  border-radius: 50%;
+  background: #eee;
+}
+
+header .icons a:hover {
+  color: #fff;
+  background: #fdbd32;
+  transition: all 0.4s linear;
+  transform: rotate(360deg);
+}
+.selector{
+  width: 250px;
+  position: relative;
+}
+#selectField{
+  position: absolute;
+  top: 26%;
+  width: 100%;
+  height: 30px;
+  padding: 0 20px;
+  margin-bottom: 5px;
+  font-size: 15px;
+  background: #d8ac91;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+#selectField #selectText{
+  padding: 0;
+  margin-bottom: 0;
+}
+#list{
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  padding: 0;
+  background-color: #d8ac91;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.options{
+  width: 100%;
+  padding: 15px 0 15px 0px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.options:hover{
+  background: rgba(255, 255,255, 0.7);
+}
+.hide{
+  visibility: hidden;
+}
+/***** NAV MOBILE *********/
+#burger-menu{
+  margin: auto 0;
+  display: none;
+  cursor: pointer;
+}
+#burger-menu div{
+  width: 25px;
+  height: 3px;
+  background-color: #735240;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+.open .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+  transform: rotate(-45deg) translate(-6px, 6px);
+}
+
+.open .bar2 {
+  opacity: 0;
+}
+
+.open .bar3 {
+  -webkit-transform: rotate(45deg) translate(-6px, -8px);
+  transform: rotate(45deg) translate(-6px, -8px);
+}
+.open .mobile-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  height: calc(100vh - 50px);
+  width: 100%;
+  background-color: #e5e2e2;
+}
+/***** FOOTER *********/
+
+.site-footer{
+  padding: 60px 0;
+  background: #303133;
+  font-size: 14px;
+  color: #fff;
+}
+.site-footer p:last-child{
+  margin-bottom: 0;
+}
+.site-footer a{
+  color: #fdbd32;
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+}
+.site-footer a:hover{
+  color:#fff ;
+  border-bottom: 1px solid rgba(255, 255,255, 0.2);
+}
+.site-footer h2{
+  font-size: 22px;
+  margin-bottom: 28px;
+  letter-spacing: .05em;
+  color: #fff;
+}
+.site-footer .footer-link li{
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+.footer-social a{
+  line-height: 0;
+  border-radius: 50%;
+  margin: 0 5px 5px 0;
+  border: 1px solid rgba(255, 255,255, 0.1);
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  display: inline-block;
+}
+.footer-social a:hover{
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+.footer-social .fab{
+  margin-top: 7px;
+}
+
+@media only screen and (max-width: 576px) {
+  #site-header{
+    background-color: #ffffff;
+  }
+  #site-header.active{
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  .navbar{
+    display: none;
+  }
+  header .icons a{
+    display: none;
+  }
+  #burger-menu{
+    display: block;
+  }
+  .logo-nav{
+    font-size: 12px;
+  }
+}
+@media only screen and (min-width: 577px) and (max-width: 768px) {
+  header .navbar ul a {
+    font-size: 16px;
+  }
+}
