@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Dishes;
+use App\Entity\Dish;
 use App\Form\DishType;
-use App\Repository\DishesRepository;
+use App\Repository\DishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DishController extends AbstractController
 {
     #[Route('/admin/dish', name: 'all_dish')]
-    public function retrieveDish(DishesRepository $dishes): Response
+    public function retrieveDish(DishRepository $dishes): Response
     {
         $dishes = $dishes->findAll();
         return $this->render('admin/dish/dish-list.html.twig', [
@@ -24,7 +24,7 @@ class DishController extends AbstractController
     }
     #[Route('/admin/dish/new', name: 'add_dish')]
     public function addDish(EntityManagerInterface $em, Request $request){
-        $dish = new Dishes;
+        $dish = new Dish;
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -40,7 +40,7 @@ class DishController extends AbstractController
         }
     }
     #[Route('/admin/dish/{id}', name: 'one_dish')]
-    public function displayOneDish($id, DishesRepository $dish){
+    public function displayOneDish($id, DishRepository $dish){
         $dish = $dish->find($id);
 
         return $this->render('admin/dish/oneDish.html.twig', [
@@ -48,7 +48,7 @@ class DishController extends AbstractController
         ]);
     }
     #[Route('/admin/dish/update/{id}', name: 'update_dish')]
-    public function updateDish(Dishes $dish, Request $request, EntityManagerInterface $em){
+    public function updateDish(Dish $dish, Request $request, EntityManagerInterface $em){
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -63,7 +63,7 @@ class DishController extends AbstractController
         }
     }
     #[Route('/admin/activate/dish/{id}', name: 'activate_dish')]
-    public function activateDish(Dishes $dish, EntityManagerInterface $em){
+    public function activateDish(Dish $dish, EntityManagerInterface $em){
         $dish->setActive(($dish->getActive())? false : true);
         $em->persist($dish);
         $em->flush();
@@ -72,7 +72,7 @@ class DishController extends AbstractController
     }
 
     #[Route('/admin/dish/delete/{id}', name: 'delete_dish')]
-    public function deleteDish(Dishes $dish, EntityManagerInterface $em){
+    public function deleteDish(Dish $dish, EntityManagerInterface $em){
         $em->remove($dish);
         $em->flush();
 

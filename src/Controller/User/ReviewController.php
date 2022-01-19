@@ -4,7 +4,7 @@ namespace App\Controller\User;
 
 use DateTime;
 use App\Entity\Review;
-use App\Form\ReviewType;
+use App\Form\ReviewFormType;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +28,7 @@ class ReviewController extends AbstractController
             $userPseudo = null;
             $userId = null;
         }
-        $form = $this->createForm(ReviewType::class);
+        $form = $this->createForm(ReviewFormType::class);
          return $this->render('review/review.html.twig', [
                 'reviews' => $reviewRepo->findAll(),
                 'userPseudo' => $userPseudo,
@@ -42,7 +42,7 @@ class ReviewController extends AbstractController
      */
     public function createReview(Request $request, EntityManagerInterface $em){
         $new_review = new Review;
-        $form = $this->createForm(ReviewType::class, $new_review);
+        $form = $this->createForm(ReviewFormType::class, $new_review);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $new_review->setUser($this->getUser());
