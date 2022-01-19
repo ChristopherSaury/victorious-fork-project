@@ -19,6 +19,33 @@ class DishRepository extends ServiceEntityRepository
         parent::__construct($registry, Dish::class);
     }
 
+    public function getPaginatedDishes($page, $limit, $filters = null){
+        $query = $this->createQueryBuilder('d')
+        ->where('d.active = 1');
+
+        if($filters !== null){
+            $query->andWhere('d.category IN(:cats)')
+            ->setParameter(':cats', array_values($filters));
+        }
+
+        $query->orderBy('d.id')
+        ->setFirstResult(($page * $limit) - $limit)
+        ->setMaxResults($limit);
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function getTotalDishes($filters = null){
+        $query = $this->createQueryBuilder('d')
+            ->select('COUNT(d)')
+            ->where('d.active = 1');
+            if($filters !== null){
+                $query->andWhere('d.category IN(:cats)')
+                ->setParameter(':cats', array_values($filters));
+            }
+            return $query->getQuery()->getSingleScalarResult();  
+    }
+
     // /**
     //  * @return Dish[] Returns an array of Dish objects
     //  */
