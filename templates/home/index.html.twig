@@ -2,13 +2,13 @@
 
 {% block title %}Accueil{% endblock %}
         {% block stylesheets %}
-        <link rel="stylesheet" href="{{asset('asset/css/home.css')}}">
+        <link rel="stylesheet" href="{{asset('css/home.css')}}">
         {% endblock %}
         {%  block style%}
-        <link rel="stylesheet" href="{{asset('asset/css/navbar-footer-home.css')}}">
+        <link rel="stylesheet" href="{{asset('css/navbar-footer-home.css')}}">
         {% endblock %}
         {% block javascripts %}
-        <script src="{{asset('asset/js/home.js')}}"></script>
+        <script src="{{asset('js/home.js')}}"></script>
         {% endblock %}
 
 {% block body %}
@@ -29,7 +29,7 @@
         <div class="container-fluid">
           <div class="row pb-5 reveal">
             <div class="text-center col-lg-4">
-              <img src="{{ asset('asset/image/smartphone.jpg') }}" alt="smartphone" />
+              <img src="{{ asset('image/smartphone.jpg') }}" alt="smartphone" />
               <h4 class="mt-2">Adresse</h4>
               <p class="mt-4">
                 Je renseigne 'addresse à laquelle je souhaite être livré dans la
@@ -37,14 +37,14 @@
               </p>
             </div>
             <div class="text-center col-lg-4">
-              <img src="{{ asset('asset/image/menu.jpg') }}" alt="restaurant menu" />
+              <img src="{{ asset('image/menu.jpg') }}" alt="restaurant menu" />
               <h4 class="mt-2">Je choisi</h4>
               <p class="mt-4">
                 Je parcours le site et je sélectionne tous ce qui me fait envie.
               </p>
             </div>
             <div class="text-center col-lg-4">
-              <img src="{{ asset('asset/image/food-delivery.jpg') }}" alt="food delivery" />
+              <img src="{{ asset('image/food-delivery.jpg') }}" alt="food delivery" />
               <h4 class="mt-2">Paiement et livraison</h4>
               <p class="mt-4">
                 Je valide mon panier, je suis les instructions pour le paiement.
