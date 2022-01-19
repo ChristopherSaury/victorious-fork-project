@@ -52,7 +52,9 @@ class Dish
     {
         return $this->description;
     }
-
+    public function getSummary(): ?string{
+        return substr($this->description, 0,50) . '...';
+    }
     public function setDescription(string $description): self
     {
         $this->description = $description;
