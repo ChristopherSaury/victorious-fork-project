@@ -32,7 +32,9 @@
                 <li><a class="navigation-link" href="{{path('home')}}">Accueil</a></li>
                 <li><a class="navigation-link" href="{{path('app_login')}}">Connexion</a></li>
                 <li><a class="navigation-link" href="{{ path('review') }}">Avis</a></li>
+                {% if is_granted('ROLE_USER') %}
                 <li><a class="navigation-link" href="{{path('selection')}}">Menu</a></li>
+                {% endif %}
                 <li><a class="navigation-link" href="{{path('contact')}}">Contact</a></li>
                 <li><a class="navigation-link" href="{{path('faq')}}">FAQ</a></li>
               </ul>
@@ -49,7 +51,9 @@
                 <li><a class="navigation-link" href="{{path('home')}}">Accueil</a></li>
                 <li><a class="navigation-link" href="{{path('app_login')}}">Connexion</a></li>
                 <li><a class="navigation-link" href="{{ path('review') }}">Avis</a></li>
-                <li><a class="navigation-link" href="{{path('selection')}}">Nos plats</a></li>
+                {% if is_granted('ROLE_USER') %}
+                <li><a class="navigation-link" href="{{path('selection')}}">Menu</a></li>
+                {% endif %}
                 <li><a class="navigation-link" href="{{path('contact')}}">Contact</a></li>
                 <li><a class="navigation-link" href="{{path('faq')}}">FAQ</a></li>
               </ul>
@@ -113,7 +117,9 @@
                   <li><a href="{{path('app_register')}}">Inscription</a></li>
                   <li><a href="{{path('app_login')}}">Connexion</a></li>
                   <li><a href="{{ path('review') }}">Avis</a></li>
-                  <li><a href="{{path('selection')}}">Menu</a></li>
+                  {% if is_granted('ROLE_USER') %}
+                  <li><a class="navigation-link" href="{{path('selection')}}">Menu</a></li>
+                  {% endif %}
                   <li><a href="{{path('contact')}}">Contact</a></li>
                   <li><a href="{{path('faq')}}">FAQ</a></li>
                   <li><a href="{{path('cgu')}}">Conditions générales d'utilisation</a></li>
