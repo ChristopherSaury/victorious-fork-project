@@ -15,7 +15,8 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Email</th>
                     <th scope="col">Telephone</th>
-                    <th scope="col">Statut vérifié</th>
+                    <th scope="col">CGU status</th>
+                    <th scope="col">date de création</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -27,7 +28,9 @@
                     <td>{{ user.firstname }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.phone }}</td>
-                    <td>{{ user.isVerified }}</td>
+                    <td>{{ user.useTerms }}</td>
+                    <td>{{ user.getCreatedAt()|date("d/m/Y") }}</td>
+
                     <td><a class="btn btn-danger" href="{{ path('delete_user', {id:user.id}) }}" title="supprimer"><i class="fas fa-trash-alt"></i></a></td>
                   </tr>
                   {% endfor %}
