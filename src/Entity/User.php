@@ -54,6 +54,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $useTerms;
 
+    #[ORM\Column(type: 'datetime')]
+    private $created_at;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -107,6 +110,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @see AccountIdentification
+     */
+    public function getAccountIdentifier() : string
+    {
+        return $this->getFirstname() . ' ' . substr($this->getLastname(), 0, 1) . '.';
+    }
+
+    /**
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
@@ -153,10 +164,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function getAccountIdentifier(){
-        return $this->getFirstname() . ' ' . substr($this->getLastname(), 0, 1) . '.';
-    }
-
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -249,6 +256,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUseTerms(bool $useTerms): self
     {
         $this->useTerms = $useTerms;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
