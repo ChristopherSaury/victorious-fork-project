@@ -1,6 +1,6 @@
 .register-page-container{
   width: 100%;
-  height: calc(150vh - 70px);
+  height: 160vh;
 }
 .register-page-container .row{
   display: flex;
@@ -15,12 +15,12 @@
 }
 .register-bkg img{
   width: 100%;
-  height: calc(150vh - 70px);
+  height: 160vh;
   padding: 0;
   margin: 0;
 }
 .register-form{
-  padding: 1% 5%;
+  padding: 6% 5% 1% 5%;
   width: 50%;
   flex: 1;
 }
@@ -56,7 +56,7 @@
     width: 100%;
   }
 }
-@media only screen and (min-width: 577px) and (max-width: 768px) {
+@media only screen and (min-width: 350px) and (max-width: 768px) {
   .register-page-container{
     height: auto;
   }
