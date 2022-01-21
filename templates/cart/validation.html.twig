@@ -10,8 +10,46 @@
     <div class="container">
         <div class="row">
             <div class="col-lg">
-                <h1 class="text-center">Récapitulatif de votre commande</h1>
-
+                <h2 class="option-title text-center">Option de livraison</h2>
+                
+                {{ form_start(ValidationForm) }}
+                {{ form_row(ValidationForm.location) }}
+                {{ form_row(ValidationForm.delivery_hour) }}
+                <div class="btn-wrapper">
+                    <button type="submit" class="btn btn-primary">Payer</button>
+                </div>
+                {{ form_end(ValidationForm) }}
+            </div>
+            <div class="col-lg">
+                <h1 class="overview-title text-center">Récapitulatif de votre commande</h1>
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                            <th scope="col">Plat</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in cartData %}
+                      <tr>
+                        <td>{{ element.dish.name }}</td>
+                        <td>{{ element.dish.price }} €</td>
+                        <td>{{ element.quantity }}</td>
+                        <td>{{ element.quantity * element.dish.price }} €</td>
+                      </tr>
+                      {% else %}
+                      <tr>
+                        <td colspan="5" class="text-center">Votre panier est vide</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <td colspan="3">Total</td>
+                        <td class="text-end">{{ total }} €</td>
+                    </tfoot>
+                  </table>
             </div>
         </div>
     </div>

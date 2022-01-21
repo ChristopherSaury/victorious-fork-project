@@ -1,4 +1,12 @@
 #validationForm {
     background-color: #fff;
     padding: 8% 0%;
-  }
+}
+.overview-title {
+  font-size: 25px;
+  margin-bottom: 2%;
+}
+.option-title{
+  font-size: 25px;
+  margin-bottom: 5%;
+}
