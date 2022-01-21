@@ -108,18 +108,34 @@ class CartController extends AbstractController
     /**
      * @Route("/validation", name="validation")
      */
-    public function cartValidation (SessionInterface $session, Request $request, EntityManagerInterface $em){
+    public function cartValidation (SessionInterface $session, Request $request, DishRepository $dishRepository , EntityManagerInterface $em){
         $cart = $session->get("cart", []);
+
+        $cartData = [];
+        $total = 0;
+
+        foreach($cart as $id => $quantity){
+            $dish = $dishRepository->find($id);
+            $cartData[] = [
+                "dish" => $dish,
+                "quantity" => $quantity,
+            ];
+            $total += $dish->getPrice() * $quantity;
+        }
         $new_order = new Order;
         $form = $this->createForm(OrderValidationType::class, $new_order);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $new_order->setUser($this->getUser());
+            $new_order->setPrice($total);
             $em->persist($new_order);
             $em->flush();
         }
         
         return $this->render('cart/validation.html.twig',[
-            'form' => $form->createView()
+            'ValidationForm' => $form->createView(),
+            'cartData' => $cartData,
+            'total' => $total
         ]);
     }
     /**

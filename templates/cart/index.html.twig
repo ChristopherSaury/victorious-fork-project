@@ -2,7 +2,7 @@
 
 {% block title %}Panier de commande{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="{{asset('asset/css/shopping-cart.css')}}">
+<link rel="stylesheet" href="{{asset('css/shopping-cart.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -29,7 +29,7 @@
                         <td>{{ element.quantity }}</td>
                         <td>{{ element.quantity * element.dish.price }} €</td>
                         <td>
-                            <a class="btn btn-success" href="{{ path('cart_add', {id: element.dish.id}) }}" title="ajouter"><i class="fas fa-plus-square"></i></a>
+                            <a class="btn btn-success" href="{{ path('cart_add_from_cart', {id: element.dish.id}) }}" title="ajouter"><i class="fas fa-plus-square"></i></a>
                             <a class="btn btn-warning" href="{{ path('cart_remove', {id: element.dish.id}) }}" title="retirer"><i class="far fa-minus-square"></i></a>
                             <a class="btn btn-danger" href="{{ path('cart_delete', {id: element.dish.id}) }}" title="supprimer"><i class="far fa-trash-alt"></i></a>
                         </td>
@@ -41,9 +41,10 @@
                       {% endfor %}
                     </tbody>
                     <tfoot>
-                        <td colspan="3">Total</td>
+                        <td colspan="2">Total</td>
                         <td class="text-end">{{ total }} €</td>
                         <td><a class="btn btn-danger" href="{{ path('cart_delete_all')}}" title="supprimer panier"><i class="far fa-trash-alt"></i></a></td>
+                        <td><a class="btn btn-success" href="{{ path('cart_validation')}}" title="supprimer panier">Valider panier</a></td>
                     </tfoot>
                   </table>
             </div>
