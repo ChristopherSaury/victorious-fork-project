@@ -16,7 +16,7 @@
                 {{ form_row(ValidationForm.location) }}
                 {{ form_row(ValidationForm.delivery_hour) }}
                 <div class="btn-wrapper">
-                    <button type="submit" class="btn btn-primary">Payer</button>
+                    <a class="btn btn-primary" href="{{ path('cart_data_pdf')}}" title="Payer">Payer</a>
                 </div>
                 {{ form_end(ValidationForm) }}
             </div>

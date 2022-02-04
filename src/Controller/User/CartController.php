@@ -2,8 +2,10 @@
 
 namespace App\Controller\User;
 
-use App\Entity\Order;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Dish;
+use App\Entity\Order;
 use App\Form\OrderValidationType;
 use App\Repository\DishRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -137,6 +139,43 @@ class CartController extends AbstractController
             'cartData' => $cartData,
             'total' => $total
         ]);
+    }
+    /**
+     * @Route("/order/pdf",name="data_pdf", methods={"GET"})
+     */
+    public function profilDataDownload(): Response
+    {
+        //on definit les options du Pdf
+         $pdfOptions = new Options();
+        //police par defaut
+        $pdfOptions->set('defaultFont','Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+        //on instancie Dompdf
+        $dompdf= new Dompdf($pdfOptions);
+        $context = stream_context_create([
+                'ssl' =>[
+                        'verify_peer' => FALSE,
+                        'verify_peer_name' => FALSE,
+                        'allow_self_signed' => TRUE,
+                        ] 
+            ]);
+        $dompdf->setHttpContext($context);
+        //on génére le html
+        $html=$this->renderView('devis/devis.html.twig');
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4','portrait');
+        $dompdf->render();
+
+        //on génére un nom de fichier
+        $fichier= 'order-' . $this->getUser()->getFirstname() . '-' . $this->getUser()->getLastname()  . '.pdf';
+
+        //envoyer le pdf au navigateur
+        $dompdf->stream($fichier,[
+            'Attachment' => true,
+        ]);
+            //le stream n'etant pas une response à part entière   il nous faut return une nouvelle reponse
+        return new Response();
     }
     /**
      * @Route("/delete-all", name="delete_all")
